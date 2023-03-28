@@ -24,7 +24,9 @@ var length = {
   bool: false,
   input: function () {
     while (!((this.min < this.inputLength) && (this.inputLength < this.max))) {
-       this.inputLength = prompt("How long is the password?");
+      let userInput;
+      userInput = prompt("How long is the password?");
+      this.inputLength = Math.round(userInput)
     }
     return;
   }
