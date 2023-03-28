@@ -8,6 +8,7 @@
 // ******* Length is user input *******
   // Gives prompt
   // Rerun prompt if input is outside of constraints
+  // ****** Must be positive integer *******
 // Upper, Lower, Symbols, Numbers
 // Boolean values
 // ???????? Objects for all the values ????????
@@ -22,7 +23,7 @@ var length = {
   max: 20,
   bool: false,
   input: function () {
-    while (this.inputLength != Number) {
+    while (!((this.min < this.inputLength) && (this.inputLength < this.max))) {
        this.inputLength = prompt("How long is the password?");
     }
     return;
@@ -32,6 +33,8 @@ var length = {
 
 function generatePassword() {
   length.input();
+
+  console.log(length.inputLength);
 }
 
 
