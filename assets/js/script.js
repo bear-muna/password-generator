@@ -19,11 +19,11 @@
 // length is a user input
 var length = {
   inputLength: null,
-  min: 5,
-  max: 20,
+  min: 8,
+  max: 128,
   bool: false,
   input: function () {
-    while (!((this.min < this.inputLength) && (this.inputLength < this.max))) {
+    while (!((this.min <= this.inputLength) && (this.inputLength <= this.max))) {
       let userInput;
       userInput = prompt("How long is the password?");
       this.inputLength = Math.round(userInput)
@@ -33,10 +33,65 @@ var length = {
 }
 
 
+// How to add all characters into a single string
+  // Concatinate but with a method???
+// Need to give boolean values for each property from user input
+// Need upperCase and lowerCase property / method
+
+// Ask user to give input on what properties to use
+// default == null, change == true
+// if (true) -> add property into ?array? or ?new string?
+// lowerCase and upperCase should be function added onto "letters"
+  // letters should not have majority chance of password
+
+
+var characters = {
+  letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  numbers: "0123456789",
+  specialChar: "!@#$%^&*",
+
+  wantUpper: null,
+  wantLower: null,
+  wantNum: null,
+  wantSpec: null,
+  
+  want: function() {
+    var upperInput = prompt("Does your password want upper case letter? Input any value for 'Yes', Cancel for 'No'", "YES");
+    if (upperInput !== null) {
+      this.wantUpper = true;
+    }
+    var lowerInput = prompt("Does your password want lower case letter? Input any value for 'Yes', cancel for 'No'", "YES");
+    if (lowerInput !== null) {
+      this.wantLower = true;
+    }
+    var numInput = prompt("Does your password want numbers? Input any value for 'Yes', cancel for 'No'", "YES");
+    if (numInput !== null) {
+      this.wantNum = true;
+    }
+    var specInput = prompt("Does your password want special characters? Input any value for 'Yes', cancel for 'No'", "YES");
+    if (specInput !== null) {
+      this.wantSpec = true;
+    }
+  }
+}
+  
+
+// For loop after taking in inputLength as a limit
+function randomizer() {
+  for (let i = 0; i < length.inputLength; i++) {
+
+  }
+}
+
+
+
 function generatePassword() {
   length.input();
+  characters.want();
+
 
   console.log(length.inputLength);
+  console.log(characters);
 }
 
 
