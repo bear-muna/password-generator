@@ -55,34 +55,68 @@ var characters = {
   wantNum: null,
   wantSpec: null,
   
+
+  // How to make sure all are not null to continue prompt?
   want: function() {
-    var upperInput = prompt("Does your password want upper case letter? Input any value for 'Yes', Cancel for 'No'", "YES");
-    if (upperInput !== null) {
-      this.wantUpper = true;
-    }
-    var lowerInput = prompt("Does your password want lower case letter? Input any value for 'Yes', cancel for 'No'", "YES");
-    if (lowerInput !== null) {
-      this.wantLower = true;
-    }
-    var numInput = prompt("Does your password want numbers? Input any value for 'Yes', cancel for 'No'", "YES");
-    if (numInput !== null) {
-      this.wantNum = true;
-    }
-    var specInput = prompt("Does your password want special characters? Input any value for 'Yes', cancel for 'No'", "YES");
-    if (specInput !== null) {
-      this.wantSpec = true;
-    }
+    while (this.wantUpper == null
+      && this.wantLower == null
+      && this.wantNum == null
+      && this.wantSpec == null) {
+        var upperInput = prompt("Does your password want upper case letter? Input any value for 'Yes', Cancel for 'No'", "YES");
+        if (upperInput !== null) {
+          this.wantUpper = true;
+        }
+        var lowerInput = prompt("Does your password want lower case letter? Input any value for 'Yes', cancel for 'No'", "YES");
+        if (lowerInput !== null) {
+          this.wantLower = true;
+        }
+        var numInput = prompt("Does your password want numbers? Input any value for 'Yes', cancel for 'No'", "YES");
+        if (numInput !== null) {
+          this.wantNum = true;
+        }
+        var specInput = prompt("Does your password want special characters? Input any value for 'Yes', cancel for 'No'", "YES");
+        if (specInput !== null) {
+          this.wantSpec = true;
+        }
+      }
   }
 }
   
 
-// For loop after taking in inputLength as a limit
-function randomizer() {
-  for (let i = 0; i < length.inputLength; i++) {
+// Turn strings into an array
+// Concat() arrays into one larger array
 
+function arrayMaker() {
+  var letterArray = characters.letters.split("");
+  console.log(letterArray);
+
+  var numberArray = characters.numbers.split("");
+  console.log(numberArray);
+
+  var specialArray = characters.specialChar.split("");
+  console.log(specialArray);
+
+  var masterArray = [];
+
+  if (characters.wantUpper == true || 
+    characters.wantLower == true) {
+      masterArray = masterArray.concat(letterArray);
+    }
+  if (characters.wantNum == true) {
+    masterArray = masterArray.concat(numberArray);
   }
+  if (characters.wantSpec == true) {
+    masterArray = masterArray.concat(specialArray);
+  }
+
+  console.log(masterArray);
+  
 }
 
+// For loop after taking in inputLength as a limit
+function randomizer() {
+  
+}
 
 
 function generatePassword() {
@@ -92,6 +126,8 @@ function generatePassword() {
 
   console.log(length.inputLength);
   console.log(characters);
+
+  arrayMaker();
 }
 
 
