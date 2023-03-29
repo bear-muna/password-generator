@@ -101,6 +101,7 @@ var characters = {
           this.wantSpec = true;
         }
       }
+    return;
   }
 }
   
@@ -143,17 +144,47 @@ function arrayMaker() {
   }
 
   console.log(masterArray);
+
+  // Generates random number between 0 and length of masterArray
+  let random = Math.floor(Math.random() * masterArray.length);
+  console.log(random);
   
 }
 
 
 // For loop after taking in inputLength as a limit
 // TODO: Look up .random() to figure out how to incorporate the array length with the random number to generate an index
+
+// For loop adds each value into a new array
+// Array then converted to a string
+
+  // Math.floor() returns x rounded down to its nearest integer
+  // Math.random() returns a number between 0-1
+  // Math.round() return x rounded to its nearest integer
 function randomizer() {
+
+  var passwordArray = [];
+  
+  // for loop to add into new passwordArray
   for (let i = 0; i < length.inputLength; i++) {
 
+    // generates random number index from masterArray
+    // used to pick a random character from the random index
+    var random = Math.floor(Math.random() * masterArray.length);
+    
+    // passwordArray at given index is then pushed a random character from masterArray
+    passwordArray[i].push(masterArray[random]);
   }
+
+  console.log(passwordArray);
 }
+
+
+
+
+
+
+// TODO: FIX BUG
 
 // Function to generate password
 function generatePassword() {
@@ -165,6 +196,7 @@ function generatePassword() {
   console.log(characters);
 
   arrayMaker();
+  randomizer();
 }
 
 
@@ -183,3 +215,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
