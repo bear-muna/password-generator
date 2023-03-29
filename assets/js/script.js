@@ -18,11 +18,21 @@
 
 // length is a user input
 var length = {
+
+  // null b/c I idk how to put undefined
   inputLength: null,
+
+  // minimum value for password length
   min: 8,
+
+  // maximum value for password length
   max: 128,
-  bool: false,
+
+  // function to give user input on password length
   input: function () {
+
+    // while loop to make sure user's input is within min and max
+    // ?????? Refactor ??????
     while (!((this.min <= this.inputLength) && (this.inputLength <= this.max))) {
       let userInput;
       userInput = prompt("How long is the password?");
@@ -36,7 +46,11 @@ var length = {
 // How to add all characters into a single string
   // Concatinate but with a method???
 // Need to give boolean values for each property from user input
+
+
 // Need upperCase and lowerCase property / method
+    // ***** TOO DIFFICULT ATM *******
+    // Just make two separate properties for upper and lower
 
 // Ask user to give input on what properties to use
 // default == null, change == true
@@ -46,10 +60,14 @@ var length = {
 
 
 var characters = {
-  letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  
+  // All types of password properties as a single string
+  upLetters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowLetters: "abcdefghijklmnopqrstuvwxyz",
   numbers: "0123456789",
   specialChar: "!@#$%^&*",
 
+  // boolean values that change depending on user input
   wantUpper: null,
   wantLower: null,
   wantNum: null,
@@ -58,10 +76,14 @@ var characters = {
 
   // How to make sure all are not null to continue prompt?
   want: function() {
+
+    // while loop to make sure that one type of property is at least selected
+    // since the default is null on 'cancel' for user input, we check for property selection with true and null
     while (this.wantUpper == null
       && this.wantLower == null
       && this.wantNum == null
       && this.wantSpec == null) {
+
         var upperInput = prompt("Does your password want upper case letter? Input any value for 'Yes', Cancel for 'No'", "YES");
         if (upperInput !== null) {
           this.wantUpper = true;
@@ -85,10 +107,15 @@ var characters = {
 
 // Turn strings into an array
 // Concat() arrays into one larger array
-
+// TODO: Combine the character array section with the concat section
 function arrayMaker() {
-  var letterArray = characters.letters.split("");
-  console.log(letterArray);
+
+  // takes the string and turns into character array
+  var upLetterArray = characters.upLetters.split("");
+  console.log(upLetterArray);
+
+  var lowLetterArray = characters.lowLetters.split("");
+  console.log(lowLetterArray);
 
   var numberArray = characters.numbers.split("");
   console.log(numberArray);
@@ -96,12 +123,18 @@ function arrayMaker() {
   var specialArray = characters.specialChar.split("");
   console.log(specialArray);
 
+  // master array used to add up all the selected properties
   var masterArray = [];
 
-  if (characters.wantUpper == true || 
-    characters.wantLower == true) {
-      masterArray = masterArray.concat(letterArray);
+
+  // There's got to be a more effecient way to concat *********
+  // selected array is then concatinated onto the master array
+  if (characters.wantUpper == true) {
+    masterArray = masterArray.concat(upLetterArray);
     }
+  if (characters.wantLower == true) {
+    masterArray = masterArray.concat(lowLetterArray);
+  }
   if (characters.wantNum == true) {
     masterArray = masterArray.concat(numberArray);
   }
@@ -113,12 +146,16 @@ function arrayMaker() {
   
 }
 
+
 // For loop after taking in inputLength as a limit
+// TODO: Look up .random() to figure out how to incorporate the array length with the random number to generate an index
 function randomizer() {
-  
+  for (let i = 0; i < length.inputLength; i++) {
+
+  }
 }
 
-
+// Function to generate password
 function generatePassword() {
   length.input();
   characters.want();
