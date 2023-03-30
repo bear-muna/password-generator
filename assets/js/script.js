@@ -14,7 +14,11 @@
 // ???????? Objects for all the values ????????
 // ???????? Objects hold characters and boolean for properites ???????
 
+// master array used to add up all the selected properties
+var masterArray = [];
 
+// password array 
+var passwordArray = [];
 
 // length is a user input
 var length = {
@@ -84,6 +88,7 @@ var characters = {
       && this.wantNum == null
       && this.wantSpec == null) {
 
+        // TODO: Make multi-line String
         var upperInput = prompt("Does your password want upper case letter? Input any value for 'Yes', Cancel for 'No'", "YES");
         if (upperInput !== null) {
           this.wantUpper = true;
@@ -124,8 +129,7 @@ function arrayMaker() {
   var specialArray = characters.specialChar.split("");
   console.log(specialArray);
 
-  // master array used to add up all the selected properties
-  var masterArray = [];
+
 
 
   // There's got to be a more effecient way to concat *********
@@ -144,12 +148,7 @@ function arrayMaker() {
   }
 
   console.log(masterArray);
-
-  // Generates random number between 0 and length of masterArray
-  let random = Math.floor(Math.random() * masterArray.length);
-  console.log(random);
-  
-}
+} 
 
 
 // For loop after taking in inputLength as a limit
@@ -163,7 +162,7 @@ function arrayMaker() {
   // Math.round() return x rounded to its nearest integer
 function randomizer() {
 
-  var passwordArray = [];
+
   
   // for loop to add into new passwordArray
   for (let i = 0; i < length.inputLength; i++) {
@@ -173,30 +172,23 @@ function randomizer() {
     var random = Math.floor(Math.random() * masterArray.length);
     
     // passwordArray at given index is then pushed a random character from masterArray
-    passwordArray[i].push(masterArray[random]);
+    passwordArray.push(masterArray[random]);
   }
 
   console.log(passwordArray);
 }
 
-
-
-
-
-
-// TODO: FIX BUG
-
 // Function to generate password
 function generatePassword() {
   length.input();
   characters.want();
-
-
   console.log(length.inputLength);
   console.log(characters);
-
   arrayMaker();
   randomizer();
+  
+  var arrayString = passwordArray.join("");
+  return arrayString;
 }
 
 
